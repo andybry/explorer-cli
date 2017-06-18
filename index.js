@@ -6,8 +6,8 @@ const {
     omit
 } = require('lodash/fp');
 const chalk = require('chalk');
-const json = require('./shows.json');
-const help = [
+const data = require('./shows.json');
+const helpText = [
     'This would be the help',
     'screen'
 ];
@@ -22,12 +22,14 @@ const defaultState = {
     state: false,
     offset: 0,
     processingInput: false,
-    help: false
+    help: false,
+    rows: process.stdout.rows,
+    columns: process.stdout.columns,
+    helpText,
+    data
 };
 
-const rows = process.stdout.rows;
-const columns = process.stdout.columns;
-let state = merge({}, defaultState);
+const state = merge({}, defaultState);
 
 const cDelim = chalk.cyan;
 const cKey = chalk.yellow;
@@ -40,20 +42,20 @@ const output = flow(
     x => state.pick ? pick(state.pick.split(','), x) : x,
     x => state.omit ? omit(state.omit.split(','), x) : x,
     x => state.keys ? keys(x) : x,
-    x => state.state ? state : x,
-    x => state.help ? help : x,
+    x => state.state ? omit(['data', 'helpText'], state) : x,
+    x => state.help ? state.helpText : x,
     x => JSON.stringify(x, null, 2),
     split('\n'),
     xs => drop(state.offset, xs),
-    take(rows),
+    take(state.rows),
     xs => {
-        const ret = new Array(rows);
+        const ret = new Array(state.rows);
         xs.forEach((x, i) => ret[i] = x);
         return ret;
     },
     each(flow(
-        truncate({ length: columns, omission: '' }),
-        padEnd(columns),
+        truncate({ length: state.columns, omission: '' }),
+        padEnd(state.columns),
         // color {} and [] and trailing commas
         replace(/({|}|\[|\])(,?)(\s+)$/, cDelim('$1$2$3')),
         // primitive values
@@ -76,7 +78,7 @@ const output = flow(
 
 const draw = () => {
     readline.cursorTo(process.stdout, 0, 0);
-    output(json);
+    output(state.data);
 }
 
 const keyInput = (keyMatch, handler, doDraw = true) => [
@@ -116,8 +118,8 @@ process.stdin.on('keypress', cond([
     keyInput({ name: 'q' }, quit),
     keyInput({ name: 'j' }, () => state.offset++),
     keyInput({ shift: false, name: 'k' }, () => state.offset--),
-    keyInput({ ctrl: true, name: 'd' }, () => state.offset += Math.ceil(rows / 2)),
-    keyInput({ ctrl: true, name: 'u' }, () => state.offset -= Math.ceil(rows / 2)),
+    keyInput({ ctrl: true, name: 'd' }, () => state.offset += Math.ceil(state.rows / 2)),
+    keyInput({ ctrl: true, name: 'u' }, () => state.offset -= Math.ceil(state.rows / 2)),
     keyInput({ shift: true, name: 'k' }, () => Object.assign(state, {
         keys: !state.keys,
         offset: 0
