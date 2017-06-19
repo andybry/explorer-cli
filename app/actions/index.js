@@ -67,5 +67,12 @@ module.exports = {
     setPick: pick => ({
         type: actionTypes.SET_PICK,
         pick
-    })
+    }),
+    inputSave: () => ({
+        type: actionTypes.INPUT_SAVE
+    }),
+    save: file => ({
+        type: actionTypes.SAVE,
+        file
+    }),
 };

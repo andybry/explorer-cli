@@ -18,5 +18,7 @@ module.exports = {
     INPUT_PICK: 'INPUT_PICK',
     SET_PICK: 'SET_PICK',
     INPUT_OMIT: 'INPUT_OMIT',
-    SET_OMIT: 'SET_OMIT'
+    SET_OMIT: 'SET_OMIT',
+    INPUT_SAVE: 'INPUT_SAVE',
+    SAVE: 'SAVE'
 };

@@ -22,6 +22,7 @@ module.exports = store => {
         keyInput({ ctrl: false, shift: false, name: 'm' }, actions.inputMap),
         keyInput({ ctrl: false, shift: false, name: 'r' }, actions.inputRelativePath),
         keyInput({ ctrl: false, shift: false, name: 'x' }, actions.inputPick),
-        keyInput({ ctrl: false, shift: false, name: 'o' }, actions.inputOmit)
+        keyInput({ ctrl: false, shift: false, name: 'o' }, actions.inputOmit),
+        keyInput({ ctrl: false, shift: true,  name: 's' }, actions.inputSave)
     ]);
 };

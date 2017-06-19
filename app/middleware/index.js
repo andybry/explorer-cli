@@ -1,5 +1,6 @@
 module.exports = [
     require('./quit'),
     require('./scroll'),
-    require('./input')
+    require('./input'),
+    require('./save')
 ];

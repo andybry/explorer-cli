@@ -39,8 +39,11 @@ module.exports = store => next => action => {
         case actionTypes.INPUT_OMIT:
             handleInputAction('omit: ', actions.setOmit, store);
             return;
+        case actionTypes.INPUT_SAVE:
+            handleInputAction('save file: ', actions.save, store);
+            return;
         default:
             return next(action);
     }
-}
+};
 

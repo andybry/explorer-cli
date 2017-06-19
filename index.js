@@ -1,6 +1,10 @@
 const { configureStore } = require('./app/store');
 const setup = require('./app/ui/setup');
-setup(configureStore());
+const fs = require('fs');
+
+const filename = process.argv[2];
+const initialState = filename ? require(`./${filename}`) : undefined;
+setup(configureStore(initialState));
 
 // Features, bugs and tech debt
 // 
