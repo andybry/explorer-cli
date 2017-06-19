@@ -19,6 +19,11 @@ module.exports = {
     scrollHalfScreenDown: () => ({
         type: actionTypes.SCROLL_HALF_SCREEN_DOWN,
     }),
+    resize: ({ rows, columns }) => ({
+        type: actionTypes.RESIZE,
+        rows,
+        columns
+    }),
     toggleKeys: () => ({
         type: actionTypes.TOGGLE_KEYS
     }),

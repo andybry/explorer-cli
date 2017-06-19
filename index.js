@@ -5,9 +5,10 @@ setup(configureStore());
 // Features, bugs and tech debt
 // 
 //      - centralise 'process' and 'readline' access to the UI?
+//      - output on falsy values
 //      - help page
+//      - add logging (maybe separate screen?)
 //      - prevent scrolling past the ends
 //      - don't buffer the commands (throttle them?)
-//      - update columns and rows on screen resize
 //      ? - grep lines (path grep somehow?)
 //      - edit values instead of overwriting them

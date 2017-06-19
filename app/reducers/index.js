@@ -13,8 +13,22 @@ const mainReducer = combineReducers({
     state: require('./state'),
     offset: require('./offset'),
     help: require('./help'),
-    rows: (state = process.stdout.rows, action) => state,
-    columns: (state = process.stdout.columns, action) => state,
+    rows: (state = process.stdout.rows, action) => {
+        switch (action.type) {
+            case actionTypes.RESIZE:
+                return action.rows;
+            default:
+                return state;
+        }
+    },
+    columns: (state = process.stdout.columns, action) => {
+        switch (action.type) {
+            case actionTypes.RESIZE:
+                return action.columns;
+            default:
+                return state;
+        }
+    },
     helpText: (state = helpText, action) => state,
     data: (state = data, action) => state,
 });
