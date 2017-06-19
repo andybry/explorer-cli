@@ -86,16 +86,6 @@ process.stdin.addListener('keypress', cond([
     keyInput({ name: 'r' }, actions.inputRelativePath),
     keyInput({ name: 'x' }, actions.inputPick),
     keyInput({ name: 'o' }, actions.inputOmit)
-    // lineInput({ name: 'r' }, 'rel path: ', relPath => Object.assign(state, {
-    //     path: cond([
-    //         [ () => eq('', state.path), constant(relPath) ],
-    //         [ () => eq('', relPath), constant(state.path) ],
-    //         [ () => eq('.', relPath), constant(state.path) ],
-    //         [ () => eq('..', relPath), () => replace(/\.?[^.]*?$/, '', state.path)],
-    //         [ stubTrue, () => `${state.path}.${relPath}` ]
-    //     ])(),
-    //     offset: 0
-    // })),
 ]));
 
 readline.emitKeypressEvents(process.stdin);
@@ -103,7 +93,6 @@ process.stdin.setRawMode(true);
 
 // Features, bugs and tech debt
 // 
-//      - refactor to use Redux for state management
 //      - help page
 //      - prevent scrolling past the ends
 //      - don't buffer the commands (throttle them?)
