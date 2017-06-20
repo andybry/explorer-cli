@@ -2,7 +2,7 @@ const { combineReducers } = require('redux');
 const actionTypes = require('../actions/actionTypes');
 const data = require('../../shows.json');
 const helpText = require('../../helpText.json');
-const { merge, set, omit } = require('lodash/fp');
+const { merge, set, omit, pick } = require('lodash/fp');
 
 const mainReducer = combineReducers({
     path: require('./path'),
@@ -43,6 +43,6 @@ const mainReducer = combineReducers({
 });
 
 module.exports = (state, action) => {
-    if (action.type === actionTypes.CLEAR) state = undefined;
+    if (action.type === actionTypes.CLEAR) state = pick(['data'], state);
     return mainReducer(state, action);
 };
