@@ -1,7 +1,7 @@
 module.exports = [
+    require('./input'),
     require('./quit'),
     require('./scroll'),
-    require('./input'),
     require('./save'),
     require('./path'),
 ];
