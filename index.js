@@ -8,6 +8,12 @@ setup(configureStore(initialState));
 
 // Features, bugs and tech debt
 // 
+//      - t: set current node (path)
+//      - D: delete current node
+//      - read/write type: file
+//      - read/write type: http/https request
+//      - read/write type: mongo
+//
 //      - centralise 'process' and 'readline' access to the UI?
 //      - output on falsy values
 //      - help page

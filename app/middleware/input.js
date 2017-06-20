@@ -42,6 +42,10 @@ module.exports = store => next => action => {
         case actionTypes.INPUT_SAVE:
             handleInputAction('save file: ', actions.save, store);
             return;
+        case actionTypes.INPUT_PATH_VALUE:
+            const { path } = store.getState();
+            handleInputAction(`path ('${path}') value: `, actions.setPathValue, store);
+            return;
         default:
             return next(action);
     }

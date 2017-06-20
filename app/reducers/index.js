@@ -2,7 +2,7 @@ const { combineReducers } = require('redux');
 const actionTypes = require('../actions/actionTypes');
 const data = require('../../shows.json');
 const helpText = require('../../helpText.json');
-const { merge } = require('lodash/fp');
+const { merge, set, omit } = require('lodash/fp');
 
 const mainReducer = combineReducers({
     path: require('./path'),
@@ -30,7 +30,16 @@ const mainReducer = combineReducers({
         }
     },
     helpText: (state = helpText, action) => state,
-    data: (state = data, action) => state,
+    data: (state = data, action) => {
+        switch (action.type) {
+            case actionTypes.SET_PATH_VALUE:
+                return set(action.path, action.val, state);
+            case actionTypes.DELETE_PATH:
+                return omit(action.path, state);
+            default:
+                return state;
+        }
+    },
 });
 
 module.exports = (state, action) => {

@@ -75,4 +75,14 @@ module.exports = {
         type: actionTypes.SAVE,
         file
     }),
+    inputPathValue: () => ({
+        type: actionTypes.INPUT_PATH_VALUE
+    }),
+    setPathValue: val => ({
+        type: actionTypes.SET_PATH_VALUE,
+        val
+    }),
+    deletePath: () => ({
+        type: actionTypes.DELETE_PATH
+    }),
 };
