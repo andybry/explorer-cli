@@ -8,6 +8,8 @@ module.exports = (state = data, action) => {
             return set(action.path, action.val, state);
         case actionTypes.DELETE_PATH:
             return omit(action.path, state);
+        case actionTypes.LOAD_CACHE:
+            return action.data;
         default:
             return state;
     }

@@ -85,4 +85,28 @@ module.exports = {
     deletePath: () => ({
         type: actionTypes.DELETE_PATH
     }),
+    inputAddCache: () => ({
+        type: actionTypes.INPUT_ADD_CACHE
+    }),
+    addCache: key => ({
+        type: actionTypes.ADD_CACHE,
+        key
+    }),
+    inputLoadCache: () => ({
+        type: actionTypes.INPUT_LOAD_CACHE
+    }),
+    loadCache: key => ({
+        type: actionTypes.LOAD_CACHE,
+        key
+    }),
+    inputDeleteCache: () => ({
+        type: actionTypes.INPUT_DELETE_CACHE
+    }),
+    deleteCache: key => ({
+        type: actionTypes.DELETE_CACHE,
+        key
+    }),
+    toggleCacheList: () => ({
+        type: actionTypes.TOGGLE_CACHE_LIST,
+    }),
 };

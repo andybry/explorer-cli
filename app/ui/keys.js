@@ -26,5 +26,9 @@ module.exports = store => {
         keyInput({ ctrl: false, shift: true,  name: 's' }, actions.inputSave),
         keyInput({ ctrl: false, shift: false, name: 't' }, actions.inputPathValue),
         keyInput({ ctrl: false, shift: true,  name: 'd' }, actions.deletePath),
+        keyInput({ ctrl: false, shift: false, name: 'a' }, actions.inputAddCache),
+        keyInput({ ctrl: false, shift: false, name: 'l' }, actions.inputLoadCache),
+        keyInput({ ctrl: false, shift: true,  name: 'a' }, actions.inputDeleteCache),
+        keyInput({ ctrl: false, shift: true,  name: 'c' }, actions.toggleCacheList),
     ]);
 };

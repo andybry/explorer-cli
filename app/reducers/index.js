@@ -15,9 +15,11 @@ const mainReducer = combineReducers({
     columns: require('./columns'),
     helpText: require('./helpText'),
     data: require('./data'),
+    cache: require('./cache'),
+    showCache: require('./showCache'),
 });
 
 module.exports = (state, action) => {
-    if (action.type === actionTypes.CLEAR) state = pick(['data'], state);
+    if (action.type === actionTypes.CLEAR) state = pick(['data', 'cache'], state);
     return mainReducer(state, action);
 };

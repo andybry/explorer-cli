@@ -4,4 +4,5 @@ module.exports = [
     require('./scroll'),
     require('./save'),
     require('./path'),
+    require('./cache'),
 ];

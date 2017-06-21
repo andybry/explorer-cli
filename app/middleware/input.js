@@ -46,6 +46,15 @@ module.exports = store => next => action => {
             const { path } = store.getState();
             handleInputAction(`path ('${path}') value: `, actions.setPathValue, store);
             return;
+        case actionTypes.INPUT_ADD_CACHE:
+            handleInputAction('add to cache: ', actions.addCache, store);
+            return;
+        case actionTypes.INPUT_LOAD_CACHE:
+            handleInputAction('load from cache: ', actions.loadCache, store);
+            return;
+        case actionTypes.INPUT_DELETE_CACHE:
+            handleInputAction('delete from cache: ', actions.deleteCache, store);
+            return;
         default:
             return next(action);
     }

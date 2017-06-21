@@ -8,8 +8,7 @@ setup(configureStore(initialState));
 
 // Features, bugs and tech debt
 // 
-//      - a/l/A: save to cache/load from cache/delete from cache
-//      - read/write type: file
+//      - read/write type: file + run
 //      - read/write type: http/https request
 //      - read/write type: mongo
 //      - 1, 2, 3 shortcut for 'file', 'http', 'mongo' type
