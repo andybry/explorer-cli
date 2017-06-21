@@ -9,12 +9,6 @@ const runTypes = {
         const fileAction = data.fileAction;
         const filename = data.filename;
         switch (fileAction) {
-            case 'read': {
-                fs.readFile(filename, 'utf8', (err, contents) => {
-                    store.dispatch(action(JSON.parse(contents)));
-                });
-                return;
-            }
             case 'write': {
                 const outstream = fs.createWriteStream(filename);
                 const outData = omit(['runType', 'filename', 'fileAction'], data);
@@ -22,8 +16,13 @@ const runTypes = {
                 outstream.write(outStr);
                 return;
             }
-            default:
+            case 'read':
+            default: {
+                fs.readFile(filename, 'utf8', (err, contents) => {
+                    store.dispatch(action(JSON.parse(contents)));
+                });
                 return;
+            }
         }
     },
     http: (data, store, action) => request(omit(['runType'], data), (err, res) => {
