@@ -30,5 +30,6 @@ module.exports = store => {
         keyInput({ ctrl: false, shift: false, name: 'l' }, actions.inputLoadCache),
         keyInput({ ctrl: false, shift: true,  name: 'a' }, actions.inputDeleteCache),
         keyInput({ ctrl: false, shift: true,  name: 'c' }, actions.toggleCacheList),
+        keyInput({ ctrl: false, shift: true,  name: 'r' }, actions.run),
     ]);
 };

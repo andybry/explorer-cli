@@ -8,7 +8,6 @@ setup(configureStore(initialState));
 
 // Features, bugs and tech debt
 // 
-//      - read/write type: file + run
 //      - read/write type: http/https request
 //      - read/write type: mongo
 //      - 1, 2, 3 shortcut for 'file', 'http', 'mongo' type

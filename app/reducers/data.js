@@ -10,6 +10,8 @@ module.exports = (state = data, action) => {
             return omit(action.path, state);
         case actionTypes.LOAD_CACHE:
             return action.data;
+        case actionTypes.SET_DATA:
+            return action.data;
         default:
             return state;
     }

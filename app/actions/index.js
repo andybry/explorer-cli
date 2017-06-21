@@ -109,4 +109,11 @@ module.exports = {
     toggleCacheList: () => ({
         type: actionTypes.TOGGLE_CACHE_LIST,
     }),
+    run: () => ({
+        type: actionTypes.RUN,
+    }),
+    setData: data => ({
+        type: actionTypes.SET_DATA,
+        data,
+    }),
 };
