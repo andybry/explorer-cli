@@ -2,6 +2,7 @@ const actionTypes = require('../actions/actionTypes');
 const actions = require('../actions');
 const { identity, omit } = require('lodash/fp');
 const fs = require('fs');
+const request = require('request');
 
 const runTypes = {
     file: (data, store, action) => {
@@ -9,8 +10,8 @@ const runTypes = {
         const filename = data.filename;
         switch (fileAction) {
             case 'read': {
-                fs.readFile(filename, 'utf8', (err, data) => {
-                    store.dispatch(action(JSON.parse(data)));
+                fs.readFile(filename, 'utf8', (err, contents) => {
+                    store.dispatch(action(JSON.parse(contents)));
                 });
                 return;
             }
@@ -24,7 +25,10 @@ const runTypes = {
             default:
                 return;
         }
-    }
+    },
+    http: (data, store, action) => request(omit(['runType'], data), (err, res) => {
+        store.dispatch(action(res));
+    }),
 };
 
 module.exports = store => next => action => {
