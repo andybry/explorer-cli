@@ -7,7 +7,12 @@ const defaultState = {
     http: {
         runType: 'http',
         baseUrl: 'https://api.github.com',
-        url: '/rate_limit'
+        url: '/rate_limit',
+        method: 'GET',
+        headers: {
+            'User-Agent': 'request'
+        },
+        json: true
     },
     mongo: {
       runType: 'mongo',
