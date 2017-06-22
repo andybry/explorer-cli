@@ -2,7 +2,8 @@ const actionTypes = require('../actions/actionTypes');
 const { merge, omit } = require('lodash/fp');
 
 const defaultState = {
-    empty: {},
+    'empty object': {},
+    'empty array': [],
     http: {
         runType: 'http',
         baseUrl: 'https://api.github.com',
