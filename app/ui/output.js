@@ -31,7 +31,7 @@ module.exports = state => flow(
         truncate({ length: state.columns, omission: '' }),
         padEnd(state.columns),
         // color {} and [] and trailing commas
-        replace(/({|}|\[|\])(,?)(\s+)$/, cDelim('$1$2$3')),
+        replace(/({|}|{}|\[|\]|\[\])(,?)(\s+)$/, cDelim('$1$2$3')),
         // primitive values
         replace(/([0-9a-zA-Z]+)(,?)(\s+)$/, cVal('$1') + cDelim('$2$3')),
         // strings (with keys)

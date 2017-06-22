@@ -8,12 +8,15 @@ setup(configureStore(initialState));
 
 // Features, bugs and tech debt
 // 
-//      - read/write type: http/https request
-//      - read/write type: mongo
+//      - help page
+//      - README
+//      - bin file
+//      - package.json updates: license, description, keywords etc.
+//      - publish
+//      - autosave (on state change)
 //      - 1, 2, 3 shortcut for 'file', 'http', 'mongo' type
 //
 //      - output on falsy values
-//      - help page
 //      - centralise 'process' and 'readline' access to the UI?
 //      - add logging (maybe separate screen?)
 //      - prevent scrolling past the ends

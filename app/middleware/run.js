@@ -3,11 +3,12 @@ const actions = require('../actions');
 const { identity, omit } = require('lodash/fp');
 const fs = require('fs');
 const request = require('request');
+const MongoClient = require('mongodb').MongoClient;
 
 const runTypes = {
     file: (data, store, action) => {
         const fileAction = data.fileAction;
-        const filename = data.filename;
+        const filename = data.fileName;
         switch (fileAction) {
             case 'write': {
                 const outstream = fs.createWriteStream(filename);
@@ -27,6 +28,16 @@ const runTypes = {
     },
     http: (data, store, action) => request(omit(['runType'], data), (err, res) => {
         store.dispatch(action(res));
+    }),
+    mongo: (data, store, action) => MongoClient.connect(data.mongoUrl, (err, db) => {
+        const collection = db.collection(data.mongoCollection);
+        collection
+            .find(data.mongoFind || {}, data.mongoProjection || {})
+            .limit(data.mongoLimit || 50)
+            .toArray((err, res) => {
+                store.dispatch(action(res));
+                db.close();
+            });
     }),
 };
 
