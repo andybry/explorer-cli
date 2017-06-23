@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const { configureStore } = require('./app/store');
 const setup = require('./app/ui/setup');
 const fs = require('fs');
@@ -8,7 +9,6 @@ setup(configureStore(initialState));
 
 // Features, bugs and tech debt
 // 
-//      - README
 //      - bin file
 //      - package.json updates: license, description, keywords etc.
 //      - publish
