@@ -8,7 +8,6 @@ setup(configureStore(initialState));
 
 // Features, bugs and tech debt
 // 
-//      - help page
 //      - README
 //      - bin file
 //      - package.json updates: license, description, keywords etc.
