@@ -18,6 +18,7 @@ module.exports = (state = 0, action) => {
         case actionTypes.SET_MAP:
         case actionTypes.SET_PICK:
         case actionTypes.SET_OMIT:
+        case actionTypes.LOAD_CACHE:
             return 0;
         default:
             return state;

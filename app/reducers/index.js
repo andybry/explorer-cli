@@ -17,6 +17,8 @@ const mainReducer = combineReducers({
     data: require('./data'),
     cache: require('./cache'),
     showCache: require('./showCache'),
+    filename: require('./filename'),
+    autosave: require('./autosave'),
 });
 
 module.exports = (state, action) => {

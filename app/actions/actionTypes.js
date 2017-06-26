@@ -33,4 +33,5 @@ module.exports = {
     TOGGLE_CACHE_LIST: 'TOGGLE_CACHE_LIST',
     RUN: 'RUN',
     SET_DATA: 'SET_DATA',
+    TOGGLE_AUTOSAVE: 'TOGGLE_AUTOSAVE'
 };

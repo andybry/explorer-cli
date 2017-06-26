@@ -4,15 +4,21 @@ const setup = require('./app/ui/setup');
 const fs = require('fs');
 
 const filename = process.argv[2];
-const initialState = filename ? require(`./${filename}`) : undefined;
+let initialState = undefined;
+if (filename) {
+    try {
+        const jsonStr = fs.readFileSync(filename, 'utf8');
+        initialState = JSON.parse(jsonStr);
+    } catch (e) {
+        initialState = {};
+    }
+    initialState.filename = filename;
+    initialState.autosave = true;
+}
 setup(configureStore(initialState));
 
 // Features, bugs and tech debt
 // 
-//      - bin file
-//      - package.json updates: license, description, keywords etc.
-//      - publish
-//      - autosave (on state change)
 //      - 1, 2, 3 shortcut for 'file', 'http', 'mongo' type
 //
 //      - output on falsy values

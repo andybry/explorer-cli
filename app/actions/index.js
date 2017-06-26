@@ -116,4 +116,7 @@ module.exports = {
         type: actionTypes.SET_DATA,
         data,
     }),
+    toggleAutosave: () => ({
+        type: actionTypes.TOGGLE_AUTOSAVE,
+    }),
 };

@@ -38,7 +38,7 @@ It currently only works in Node.js v7+ and I've only tested it on Mac OS.
 
 *OR*
 
-`explorer-cli <filename>.json` (start with previously saved data)
+`explorer-cli <filename>` (persist data to the file and start with previously saved data)
 
 
 ## Documentation
