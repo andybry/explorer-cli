@@ -1,32 +1,32 @@
 {
-    "name": "explorer-cli",
-    "version": "0.0.1",
-    "description": "Command line utility for exploring data from a variety of sources.",
-    "license": "MIT",
-    "author": "Andrew Bryant <arbryant101@gmail.com> (https://github.com/andybry)",
-    "keywords":[
-        "redux",
-        "cli",
-        "terminal",
-        "mongodb",
-        "http",
-        "postman",
-        "data",
-        "vim",
-        "json"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/andybry/explorer-cli.git"
-    },
-    "dependencies":{
-        "chalk": "1.1.3",
-        "lodash": "4.17.4",
-        "mongodb": "2.2.29",
-        "redux": "3.7.0",
-        "request": "2.81.0"
-    },
-    "bin":{
-        "explorer-cli": "./index.js"
-    }
+  "name": "explorer-cli",
+  "version": "0.1.0",
+  "description": "Command line utility for exploring data from a variety of sources.",
+  "license": "MIT",
+  "author": "Andrew Bryant <arbryant101@gmail.com> (https://github.com/andybry)",
+  "keywords": [
+    "redux",
+    "cli",
+    "terminal",
+    "mongodb",
+    "http",
+    "postman",
+    "data",
+    "vim",
+    "json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andybry/explorer-cli.git"
+  },
+  "dependencies": {
+    "chalk": "1.1.3",
+    "lodash": "4.17.4",
+    "mongodb": "2.2.29",
+    "redux": "3.7.0",
+    "request": "2.81.0"
+  },
+  "bin": {
+    "explorer-cli": "./index.js"
+  }
 }
