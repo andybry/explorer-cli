@@ -16,20 +16,20 @@ It currently only works in Node.js v7+ and I've only tested it on Mac OS.
 
 ![explorer-cli demo](https://andybry.github.io/explorer-cli/explorer-cli.gif)
 
-### Demo Script
+### Keystrokes in the above demo
 
-    1. Start the application by entering `explorer-cli` (displaying the help page).
-    2. Load the 'http' template by typing 'l' and entering 'http'.
-    3. Run the template (to fetch the data). By pressing 'Shift-R'.
-    4. Navigate to 'body.resources' property by pressing 'p' and entering 'body.resources'
-    5. View the keys at the current node by pressing 'Shift-K'.
-    6. Toggle the view back to the data by pressing 'Shift-K' again.
-    7. Quit the application by pressing 'q'.
+1. Start the application by entering `explorer-cli` (displaying the help page).
+2. Load the 'http' template by typing 'l' and entering 'http'.
+3. Run the template (to fetch the data). By pressing 'Shift-R'.
+4. Navigate to 'body.resources' property by pressing 'p' and entering 'body.resources'
+5. View the keys at the current node by pressing 'Shift-K'.
+6. Toggle the view back to the data by pressing 'Shift-K' again.
+7. Quit the application by pressing 'q'.
 
 
 ## Installation
 
-`npm -g install explorer-cli`
+`npm install -g explorer-cli`
 
 
 ## Usage
