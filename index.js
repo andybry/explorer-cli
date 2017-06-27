@@ -19,12 +19,10 @@ setup(configureStore(initialState));
 
 // Features, bugs and tech debt
 // 
-//      - 1, 2, 3 shortcut for 'file', 'http', 'mongo' type
+//      - quick load on number keys
 //
 //      - output on falsy values
 //      - centralise 'process' and 'readline' access to the UI?
 //      - add logging (maybe separate screen?)
-//      - prevent scrolling past the ends
-//      - don't buffer the commands (debounce them?)
 //      ? - grep lines (path grep somehow?)
 //      - edit values instead of overwriting them

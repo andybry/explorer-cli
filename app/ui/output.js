@@ -1,7 +1,7 @@
 const { 
-    padEnd, take, each, flow, truncate, split, drop, keys, get,
-    map, replace, pick, omit
+    padEnd, take, each, flow, truncate, drop, replace
 } = require('lodash/fp');
+const lines = require('./lines');
 
 const chalk = require('chalk');
 const cDelim = chalk.cyan;
@@ -10,19 +10,10 @@ const cStr = chalk.green;
 const cVal = chalk.red;
 
 module.exports = state => flow(
-    x => state.path ? get(state.path, x) || {} : x,
-    x => state.map ? map(state.map, x) || {} : x,
-    x => state.pick ? pick(state.pick.split(','), x) : x,
-    x => state.omit ? omit(state.omit.split(','), x) : x,
-    x => state.keys ? keys(x) : x,
-    x => state.state ? omit(['data', 'helpText', 'cache'], state) : x,
-    x => state.help ? state.helpText : x,
-    x => state.showCache ? keys(state.cache) : x,
-    x => JSON.stringify(x, null, 2),
-    split('\n'),
-    xs => drop(state.offset, xs),
+    lines,
+    drop(state.offset),
     take(state.rows),
-    xs => {
+    xs => { // pad to screen size
         const ret = new Array(state.rows);
         xs.forEach((x, i) => ret[i] = x);
         return ret;
@@ -48,4 +39,4 @@ module.exports = state => flow(
         ),
         x => process.stdout.write(x)
     ))
-)(state.data);
+)(state);
