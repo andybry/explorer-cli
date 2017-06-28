@@ -1,12 +1,10 @@
-const readline = require('readline');
 const actionTypes = require('../actions/actionTypes');
+const quit = require('../ui/quit');
 
 module.exports = store => next => action => {
     switch (action.type) {
         case actionTypes.QUIT:
-            readline.cursorTo(process.stdout, 0, 0);
-            readline.clearScreenDown(process.stdout);
-            process.exit(0);
+            quit();
         default:
             return next(action);
     }
