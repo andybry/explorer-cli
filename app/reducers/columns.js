@@ -1,6 +1,6 @@
 const actionTypes = require('../actions/actionTypes');
 
-module.exports = (state = process.stdout.columns, action) => {
+module.exports = (state = 0, action) => {
     switch (action.type) {
         case actionTypes.RESIZE:
             return action.columns;
