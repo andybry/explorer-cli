@@ -29,7 +29,11 @@ It currently only works in Node.js v7+ and I've only tested it on Mac OS.
 
 ## Installation
 
-`npm install -g explorer-cli`
+`npm install -g explorer-cli` (to install as a global utility program)
+
+*OR*
+
+`npm install --save-dev explorer-cli` (to install locally for use in the current package)
 
 
 ## Usage
@@ -39,6 +43,28 @@ It currently only works in Node.js v7+ and I've only tested it on Mac OS.
 *OR*
 
 `explorer-cli <filename>` (persist data to the file and start with previously saved data)
+
+*OR (programatically)*
+
+```javascript
+const explorerCli = require('explorer-cli');
+
+explorerCli(state);
+
+// Where 'state' is an object with the same form as the JSON in the save files.
+// All keys in the 'state' object are optional
+```
+
+e.g.
+
+```javascript
+explorerCli({ // inspect a selection of environmental variables
+    pick: 'HOME,EDITOR,LANG',
+    data: process.env
+});
+```
+
+__NB: a TTY is required (even for programmatic use)__
 
 
 ## Documentation
