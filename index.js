@@ -26,3 +26,4 @@ setup(configureStore(initialState));
 //      - add logging (maybe separate screen?)
 //      ? - grep lines (path grep somehow?)
 //      - edit values instead of overwriting them
+//      - run history (Ctrl-p and Ctrl-n)

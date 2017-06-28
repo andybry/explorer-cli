@@ -1,6 +1,6 @@
 const readline = require('readline');
 const draw = require('./draw');
-const keys = require('./keys');
+const { keys } = require('./input');
 const actions = require('../actions');
 
 module.exports = store => {

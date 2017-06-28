@@ -1,10 +1,16 @@
 const actions = require('../actions');
-const { cond, matches } = require('lodash/fp');
+const { cond, matches, trim } = require('lodash/fp');
+const readline = require('readline');
 
-module.exports = store => {
+let isProcessing = false;
+
+const keys = store => {
     const keyInput = (keyMatch, action) => [
         (chunk, key) => matches(keyMatch, key),
-        () => store.dispatch(action())
+        () => {
+            if (isProcessing) return;
+            store.dispatch(action());
+        }
     ];
     return cond([
         keyInput({ ctrl: true,  shift: false, name: 'c' }, actions.quit),
@@ -33,4 +39,25 @@ module.exports = store => {
         keyInput({ ctrl: false, shift: true,  name: 'r' }, actions.run),
         keyInput({ ctrl: false, shift: true,  name: 'z' }, actions.toggleAutosave),
     ]);
+};
+
+const text = (msg, cb) => {
+    readline.cursorTo(process.stdout, 0, 0);
+    readline.clearScreenDown(process.stdout);
+    process.stdout.write(msg);
+    process.stdin.setRawMode(false);
+    isProcessing = true;
+    const inputHandler = chunk => {
+        isProcessing = false;
+        process.stdin.setRawMode(true);
+        process.stdin.removeListener('data', inputHandler);
+        const input = trim(chunk.toString());
+        cb(input);
+    };
+    process.stdin.addListener('data', inputHandler);
+};
+
+module.exports = {
+    keys,
+    text,
 };
