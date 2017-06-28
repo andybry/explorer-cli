@@ -3,9 +3,12 @@ const reducer = require('./reducers');
 const middleware = require('./middleware');
 
 module.exports = {
-    configureStore: initialState => createStore(
+    configureStore: (proc, initialState) => createStore(
         reducer,
         initialState,
-        applyMiddleware(...middleware)
-    )
+        applyMiddleware(
+            ...middleware.plain,
+            ...middleware.proc.map(x => x(proc))
+        )
+    ),
 };

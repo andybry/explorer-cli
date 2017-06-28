@@ -9,7 +9,7 @@ const cKey = chalk.yellow;
 const cStr = chalk.green;
 const cVal = chalk.red;
 
-module.exports = state => flow(
+module.exports = (proc, state) => flow(
     lines,
     drop(state.offset),
     take(state.rows),
@@ -37,6 +37,6 @@ module.exports = state => flow(
             /^(\s*)"(.*?)("?)(,?)(\s+)?$/,
             cDelim('$1"') + cStr('$2') + cDelim('$3$4$5')
         ),
-        x => process.stdout.write(x)
+        x => proc.stdout.write(x)
     ))
 )(state);

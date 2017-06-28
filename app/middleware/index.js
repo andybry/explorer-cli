@@ -1,9 +1,13 @@
-module.exports = [
-    require('./input'),
-    require('./quit'),
-    require('./scroll'),
-    require('./save'),
-    require('./path'),
-    require('./cache'),
-    require('./run')
-];
+module.exports = {
+    plain: [
+        require('./scroll'),
+        require('./save'),
+        require('./path'),
+        require('./cache'),
+        require('./run'),
+    ],
+    proc: [
+        require('./input'),
+        require('./quit'),
+    ]
+};

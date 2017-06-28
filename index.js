@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-const { configureStore } = require('./app/store');
 const setup = require('./app/ui/setup');
 const fs = require('fs');
 
@@ -15,7 +14,7 @@ if (filename) {
     initialState.filename = filename;
     initialState.autosave = true;
 }
-setup(configureStore(initialState));
+setup(initialState);
 
 // Features, bugs and tech debt
 // 

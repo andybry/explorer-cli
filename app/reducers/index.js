@@ -23,7 +23,7 @@ const mainReducer = combineReducers({
 
 module.exports = (state, action) => {
     if (action.type === actionTypes.CLEAR) state = pick([
-        'data', 'cache', 'autosave', 'filename',
+        'data', 'cache', 'autosave', 'filename', 'rows', 'columns'
     ], state);
     return mainReducer(state, action);
 };

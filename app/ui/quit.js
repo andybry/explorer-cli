@@ -1,7 +1,7 @@
 const readline = require('readline');
 
-module.exports = () => {
-    readline.cursorTo(process.stdout, 0, 0);
-    readline.clearScreenDown(process.stdout);
-    process.exit(0);
+module.exports = proc => {
+    readline.cursorTo(proc.stdout, 0, 0);
+    readline.clearScreenDown(proc.stdout);
+    proc.exit(0);
 };

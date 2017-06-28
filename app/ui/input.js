@@ -41,20 +41,20 @@ const keys = store => {
     ]);
 };
 
-const text = (msg, cb) => {
-    readline.cursorTo(process.stdout, 0, 0);
-    readline.clearScreenDown(process.stdout);
-    process.stdout.write(msg);
-    process.stdin.setRawMode(false);
+const text = (proc, msg, cb) => {
+    readline.cursorTo(proc.stdout, 0, 0);
+    readline.clearScreenDown(proc.stdout);
+    proc.stdout.write(msg);
+    proc.stdin.setRawMode(false);
     isProcessing = true;
     const inputHandler = chunk => {
         isProcessing = false;
-        process.stdin.setRawMode(true);
-        process.stdin.removeListener('data', inputHandler);
+        proc.stdin.setRawMode(true);
+        proc.stdin.removeListener('data', inputHandler);
         const input = trim(chunk.toString());
         cb(input);
     };
-    process.stdin.addListener('data', inputHandler);
+    proc.stdin.addListener('data', inputHandler);
 };
 
 module.exports = {

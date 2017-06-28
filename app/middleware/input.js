@@ -2,11 +2,11 @@ const actionTypes = require('../actions/actionTypes');
 const actions = require('../actions');
 const { text } = require('../ui/input');
 
-const handleInputAction = (msg, action, store) => {
-    text(msg, input => store.dispatch(action(input)));
-};
 
-module.exports = store => next => action => {
+module.exports = proc => store => next => action => {
+    const handleInputAction = (msg, action, store) => {
+        text(proc, msg, input => store.dispatch(action(input)));
+    };
     switch (action.type) {
         case actionTypes.INPUT_PATH:
             return handleInputAction('path: ', actions.setPath, store);

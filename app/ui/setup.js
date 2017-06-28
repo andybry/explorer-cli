@@ -1,23 +1,25 @@
+const { configureStore } = require('../store');
 const readline = require('readline');
 const draw = require('./draw');
 const { keys } = require('./input');
 const actions = require('../actions');
 
-const resize = store => {
+const resize = (proc, store) => {
     const action = actions.resize({
-        rows: process.stdout.rows,
-        columns: process.stdout.columns
+        rows: proc.stdout.rows,
+        columns: proc.stdout.columns
     });
     store.dispatch(action);
 };
 
-module.exports = store => {
-    const onStateChange = draw(store);
+module.exports = (initialState, proc = process) => {
+    const store = configureStore(proc, initialState);
+    const onStateChange = draw(process, store);
     store.subscribe(onStateChange);
     onStateChange();
-    process.stdin.addListener('keypress', keys(store));
-    process.stdout.addListener('resize', () => resize(store));
-    resize(store);
-    readline.emitKeypressEvents(process.stdin);
-    process.stdin.setRawMode(true);
+    proc.stdin.addListener('keypress', keys(store));
+    proc.stdout.addListener('resize', () => resize(proc, store));
+    resize(proc, store);
+    readline.emitKeypressEvents(proc.stdin);
+    proc.stdin.setRawMode(true);
 };
