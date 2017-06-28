@@ -1,4 +1,3 @@
-const readline = require('readline');
 const actionTypes = require('../actions/actionTypes');
 const actions = require('../actions');
 const { text } = require('../ui/input');

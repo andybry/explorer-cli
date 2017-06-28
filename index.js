@@ -22,7 +22,6 @@ setup(configureStore(initialState));
 //      - quick load on number keys
 //
 //      - output on falsy values
-//      - centralise 'process' and 'readline' access to the UI?
 //      - add logging (maybe separate screen?)
 //      ? - grep lines (path grep somehow?)
 //      - edit values instead of overwriting them
