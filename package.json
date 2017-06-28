@@ -28,5 +28,6 @@
   },
   "bin": {
     "explorer-cli": "./index.js"
-  }
+  },
+  "main": "./app/ui/setup"
 }
