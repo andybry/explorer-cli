@@ -14,7 +14,7 @@ const resize = (proc, store) => {
 
 module.exports = (initialState, proc = process) => {
     const store = configureStore(proc, initialState);
-    const onStateChange = draw(process, store);
+    const onStateChange = draw(proc, store);
     store.subscribe(onStateChange);
     onStateChange();
     proc.stdin.addListener('keypress', keys(store));
