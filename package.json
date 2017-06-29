@@ -23,9 +23,12 @@
     "explorer-cli": "./index.js"
   },
   "main": "./app/ui/setup",
-  "scripts":{
+  "scripts": {
     "start": "node index",
-    "test": "node test"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:cov:html": "jest --coverage --coverageReporters=html"
   },
   "dependencies": {
     "chalk": "1.1.3",
@@ -35,7 +38,7 @@
     "request": "2.81.0"
   },
   "devDependencies": {
-    "expect": "1.20.2",
+    "jest": "20.0.4",
     "strip-ansi": "4.0.0"
   }
 }
