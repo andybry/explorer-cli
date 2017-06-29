@@ -33,7 +33,7 @@ describe('scrolling', () => {
         ]);
     });
 
-    test('should be able to scroll down one line', () => {
+    test('[i] should scroll down one line', () => {
         const proc = setup();
         proc.press({ ctrl: false, shift: false, name: 'j' });
         expect(proc.screen()).toEqual([
@@ -46,7 +46,7 @@ describe('scrolling', () => {
         ]);
     });
 
-    test('should be able to scroll down half a screen', () => {
+    test('[ctrl-d] should scroll down half a screen', () => {
         const proc = setup();
         proc.press({ ctrl: true, shift: false, name: 'd' });
         expect(proc.screen()).toEqual([
@@ -59,7 +59,7 @@ describe('scrolling', () => {
         ]);
     });
 
-    test('should be able to scroll up one line', () => {
+    test('[k] should scroll up one line', () => {
         const proc = setup(3);
         proc.press({ ctrl: false, shift: false, name: 'k' });
         expect(proc.screen()).toEqual([
@@ -72,7 +72,7 @@ describe('scrolling', () => {
         ]);
     });
 
-    test('should be able to scroll up half a screen', () => {
+    test('[ctrl-u] should scroll up half a screen', () => {
         const proc = setup(3);
         proc.press({ ctrl: true, shift: false, name: 'u' });
         expect(proc.screen()).toEqual([
@@ -85,7 +85,7 @@ describe('scrolling', () => {
         ]);
     });
 
-    test('should not be able to scroll before the first line', () => {
+    test('should not be possible to scroll before the first line', () => {
         const proc = setup();
         proc.press({ ctrl: true, shift: false, name: 'u' });
         expect(proc.screen()).toEqual([
@@ -98,7 +98,7 @@ describe('scrolling', () => {
         ]);
     });
 
-    test('should not be able to scroll past the last line', () => {
+    test('should not be possible to scroll past the last line', () => {
         const proc = setup(10);
         proc.press({ ctrl: true, shift: false, name: 'd' });
         expect(proc.screen()).toEqual([
