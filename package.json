@@ -28,6 +28,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
+    "test:cov:watch": "jest --watchAll --coverage",
     "test:cov:html": "jest --coverage --coverageReporters=html"
   },
   "dependencies": {
