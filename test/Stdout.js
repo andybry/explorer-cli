@@ -3,7 +3,7 @@ const stripAnsi = require('strip-ansi');
 const { takeRight } = require('lodash/fp');
 
 module.exports = class Stdout extends EventEmitter {
-    constructor({ rows = 20, columns = 30 }) {
+    constructor({ rows = 20 }) {
         super();
         this.rows = rows;
         this.columns = 30;
