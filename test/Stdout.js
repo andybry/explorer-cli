@@ -1,18 +1,17 @@
 const EventEmitter = require('events');
 const stripAnsi = require('strip-ansi');
-const { identity, takeRight } = require('lodash/fp');
+const { takeRight } = require('lodash/fp');
 
 module.exports = class Stdout extends EventEmitter {
-    constructor({ rows = 20, columns = 30, stripColor = true } = {}) {
+    constructor({ rows = 20, columns = 30 }) {
         super();
         this.rows = rows;
-        this.columns = columns;
-        this.strip = stripColor ? stripAnsi : identity;
+        this.columns = 30;
         this.chunks = [];
     }
 
     write(chunk) {
-        this.chunks.push(this.strip(chunk));
+        this.chunks.push(stripAnsi(chunk));
     }
 
     screen() {
