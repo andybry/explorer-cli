@@ -27,9 +27,9 @@
     "start": "node index",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
-    "test:cov:watch": "jest --watchAll --coverage",
-    "test:cov:html": "jest --coverage --coverageReporters=html"
+    "cov": "jest --coverage",
+    "cov:watch": "jest --watchAll --coverage",
+    "cov:html": "jest --coverage --coverageReporters=html"
   },
   "dependencies": {
     "chalk": "1.1.3",
@@ -41,5 +41,9 @@
   "devDependencies": {
     "jest": "20.0.4",
     "strip-ansi": "4.0.0"
+  },
+  "jest": {
+    "clearMocks": true,
+    "testEnvironment": "node"
   }
 }
