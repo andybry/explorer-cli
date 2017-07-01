@@ -10,13 +10,13 @@ const setup = () => {
 };
 
 describe('save', () => {
-    test('[Shift-S]["file.json"] should save the current state to "file.json"', () => {
+    test('[shift-S]["file.json"] should save the current state to "file.json"', () => {
         const fs = require('fs');
         const proc = setup();
         proc.press({ ctrl: false, shift: true, name: 's' });
         proc.input('file.json');
         expect(fs.createWriteStream).toBeCalledWith('file.json');
-        const json = JSON.parse(fs.write.mock.calls[0]);
+        const json = JSON.parse(fs.write.mock.calls[0][0]);
         expect(json.data).toEqual("current data");
     });
 });
