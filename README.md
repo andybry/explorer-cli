@@ -29,12 +29,25 @@ It currently only works in Node.js v6+ and I've only tested it on Mac OS.
 
 ## Installation
 
+### Main program
+
 `npm install -g explorer-cli` (to install as a global utility program)
 
 *OR*
 
 `npm install --save-dev explorer-cli` (to install locally for use in the current package)
 
+### Required Run Types
+
+`npm install -g explorer-cli-{runType}` (to install for use with a global  installation of the utility program).
+
+*OR*
+
+`npm install --save-dev explorer-cli-{runType}` (to install locally for use with a local installation of the utility progam).
+
+e.g. 
+
+`npm install -g explorer-cli-http`
 
 ## Usage
 

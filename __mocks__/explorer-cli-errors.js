@@ -1,0 +1,1 @@
+module.exports = (data, cb) => cb('error data');
