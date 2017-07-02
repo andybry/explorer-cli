@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const setup = require('./app/ui/setup');
+const setup = require('./ui/setup');
 const fs = require('fs');
 
 const filename = process.argv[2];

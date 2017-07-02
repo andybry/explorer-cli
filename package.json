@@ -19,11 +19,11 @@
     "url": "https://github.com/andybry/explorer-cli.git"
   },
   "bin": {
-    "explorer-cli": "./index.js"
+    "explorer-cli": ".app/bin.js"
   },
   "main": "./app/ui/setup",
   "scripts": {
-    "start": "node index",
+    "start": "node app/bin",
     "test": "jest",
     "test:watch": "jest --watch",
     "cov": "jest --coverage",
