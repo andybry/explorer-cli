@@ -1,4 +1,4 @@
-const exploreCli = require('..');
+const exploreCli = require('../app/ui/setup');
 const Process = require('./Process');
 
 const setup = (offset = 0) => {

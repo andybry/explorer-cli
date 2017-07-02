@@ -1,4 +1,4 @@
-const explorerCli = require('..');
+const explorerCli = require('../app/ui/setup');
 const Process = require('./Process');
 
 const setup = runType => {

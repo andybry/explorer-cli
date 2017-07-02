@@ -5,11 +5,7 @@ the frustration of not having all that keyboard navigation in data management
 tools like Postman (which is otherwise an amazing tool!). It is also an 
 experiment with building a command line interface in Node.js.
 
-It's a beta project, but feel free to use it or adapt it if you come across it
-(subject to licensing restrictions). But do be aware that it might change quite
-a lot.
-
-It currently only works in Node.js v6+ and I've only tested it on Mac OS.
+I've only tested it on Mac OS.
 
 
 ## Demo
