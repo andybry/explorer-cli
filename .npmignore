@@ -1,0 +1,6 @@
+__mocks__/
+app/
+coverage/
+docs/
+node_modules/
+test/
