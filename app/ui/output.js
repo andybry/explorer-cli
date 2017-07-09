@@ -2,6 +2,7 @@ const {
     padEnd, take, each, flow, truncate, drop, replace
 } = require('lodash/fp');
 const lines = require('./lines');
+const term = require('terminal-kit').terminal;
 
 const chalk = require('chalk');
 const cDelim = chalk.cyan;
@@ -9,7 +10,7 @@ const cKey = chalk.yellow;
 const cStr = chalk.green;
 const cVal = chalk.red;
 
-module.exports = (proc, state) => flow(
+module.exports = state => flow(
     lines,
     drop(state.offset),
     take(state.rows),
@@ -37,6 +38,6 @@ module.exports = (proc, state) => flow(
             /^(\s*)"(.*?)("?)(,?)(\s+)?$/,
             cDelim('$1"') + cStr('$2') + cDelim('$3$4$5')
         ),
-        x => proc.stdout.write(x)
+        term
     ))
 )(state);

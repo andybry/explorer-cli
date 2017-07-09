@@ -1,8 +1,9 @@
 const explorerCli = require('../app/ui/setup');
-const Process = require('./Process');
+const term = require('terminal-kit').terminal;
 
 const setup = () => {
-    const proc = new Process({ rows: 5 });
+    term.reinit();
+    term.height = 5;
     explorerCli({
         cache: {
             item1: 'data item 1',
@@ -10,15 +11,14 @@ const setup = () => {
             item3: 'data item 2',
         },
         data: 'initial data'
-    }, proc);
-    return proc;
+    });
 };
 
 describe('cache', () => {
     test('[shift-C] should display cache item names', () => {
-        const proc = setup();
-        proc.press({ ctrl: false, shift: true, name: 'c' });
-        expect(proc.screen()).toEqual([
+        setup();
+        term.press('C');
+        expect(term.screen()).toEqual([
             '[                             ',
             '  "item1",                    ',
             '  "item2",                    ',
@@ -28,10 +28,10 @@ describe('cache', () => {
     });
 
     test('[shift-C][shift-C] should display the initial data (again)', () => {
-        const proc = setup();
-        proc.press({ ctrl: false, shift: true, name: 'c' });
-        proc.press({ ctrl: false, shift: true, name: 'c' });
-        expect(proc.screen()).toEqual([
+        setup();
+        term.press('C');
+        term.press('C');
+        expect(term.screen()).toEqual([
             '"initial data"                ',
             '                              ',
             '                              ',
@@ -41,10 +41,10 @@ describe('cache', () => {
     });
 
     test('[l]["item1"] should load the data from "item1"', () => {
-        const proc = setup();
-        proc.press({ ctrl: false, shift: false, name: 'l' });
-        proc.input('item1');
-        expect(proc.screen()).toEqual([
+        setup();
+        term.press('l');
+        term.input('item1');
+        expect(term.screen()).toEqual([
             '"data item 1"                 ',
             '                              ',
             '                              ',
@@ -54,17 +54,17 @@ describe('cache', () => {
     });
 
     test('[a]["item4"] should save the current data to be reloaded later', () => {
-        const proc = setup();
+        setup();
         // save
-        proc.press({ ctrl: false, shift: false, name: 'a' });
-        proc.input('item4');
+        term.press('a');
+        term.input('item4');
         // load other
-        proc.press({ ctrl: false, shift: false, name: 'l' });
-        proc.input('item1');
+        term.press('l');
+        term.input('item1');
         // load saved data
-        proc.press({ ctrl: false, shift: false, name: 'l' });
-        proc.input('item4');
-        expect(proc.screen()).toEqual([
+        term.press('l');
+        term.input('item4');
+        expect(term.screen()).toEqual([
             '"initial data"                ',
             '                              ',
             '                              ',
@@ -74,11 +74,11 @@ describe('cache', () => {
     });
 
     test('[A]["item1"] should remove "item1" from the cache', () => {
-        const proc = setup();
-        proc.press({ ctrl: false, shift: true, name: 'a' });
-        proc.input('item1');
-        proc.press({ ctrl: false, shift: true, name: 'c' });
-        expect(proc.screen()).toEqual([
+        setup();
+        term.press('A');
+        term.input('item1');
+        term.press('C');
+        expect(term.screen()).toEqual([
             '[                             ',
             '  "item2",                    ',
             '  "item3"                     ',

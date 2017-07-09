@@ -1,10 +1,10 @@
 const actionTypes = require('../actions/actionTypes');
 const quit = require('../ui/quit');
 
-module.exports = proc => store => next => action => {
+module.exports = store => next => action => {
     switch (action.type) {
         case actionTypes.QUIT:
-            quit(proc);
+            quit();
         default:
             return next(action);
     }

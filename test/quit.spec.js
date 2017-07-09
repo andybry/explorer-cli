@@ -1,22 +1,28 @@
 const explorerCli = require('../app/ui/setup');
-const Process = require('./Process');
+const term = require('terminal-kit').terminal;
+const { noop } = require('lodash/fp');
 
 const setup = () => {
-    const proc = new Process();
-    explorerCli({}, proc);
-    return proc;
+    term.reinit();
+    jest.spyOn(process, 'exit').mockImplementation(noop);
+    explorerCli({});
 };
 
 describe('quit', () => {
+
+    afterEach(() => {
+        process.exit.mockRestore();
+    })
+
     test('[q] should exit the application', () => {
-        const proc = setup();
-        proc.press({ ctrl: false, shift: false, name: 'q' });
-        expect(proc.hasExited).toBe(true);
+        setup();
+        term.press('q');
+        expect(process.exit).toHaveBeenCalledWith(0);
     });
 
     test('[ctrl-c] should exit the application', () => {
-        const proc = setup();
-        proc.press({ ctrl: true, shift: false, name: 'c' });
-        expect(proc.hasExited).toBe(true);
+        setup();
+        term.press('CTRL_C');
+        expect(process.exit).toHaveBeenCalledWith(0);
     });
 });

@@ -1,8 +1,9 @@
 const explorerCli = require('../app/ui/setup');
-const Process = require('./Process');
+const term = require('terminal-kit').terminal;
 
 const setup = () => {
-    const proc = new Process({ rows: 6 });
+    term.height = 6;
+    term.reinit();
     explorerCli({
         data: {
             statusCode: 200,
@@ -29,15 +30,14 @@ const setup = () => {
                 'User-Agent': 'request'
             }
         }
-    }, proc);
-    return proc;
+    });
 };
 
 describe('filters', () => {
     test('[Shift-K] should list the keys at current path', () => {
-        const proc = setup();
-        proc.press({ ctrl: false, shift: true, name: 'k' });
-        expect(proc.screen()).toEqual([
+        setup();
+        term.press('K');
+        expect(term.screen()).toEqual([
             '[                             ',
             '  "statusCode",               ',
             '  "body",                     ',
@@ -48,10 +48,10 @@ describe('filters', () => {
     });
 
     test('[Shift-K][Shift-K] should show the initial data (again)', () => {
-        const proc = setup();
-        proc.press({ ctrl: false, shift: true, name: 'k' });
-        proc.press({ ctrl: false, shift: true, name: 'k' });
-        expect(proc.screen()).toEqual([
+        setup();
+        term.press('K');
+        term.press('K');
+        expect(term.screen()).toEqual([
             '{                             ',
             '  "statusCode": 200,          ',
             '  "body": {                   ',
@@ -62,10 +62,10 @@ describe('filters', () => {
     });
 
     test('[p]["body.list.0"] should show the data at the given path', () => {
-        const proc = setup();
-        proc.press({ ctrl: false, shift: false, name: 'p' });
-        proc.input('body.list.0');
-        expect(proc.screen()).toEqual([
+        setup();
+        term.press('p');
+        term.input('body.list.0');
+        expect(term.screen()).toEqual([
             '{                             ',
             '  "item0": "data 00",         ',
             '  "item1": "data 01",         ',
@@ -76,12 +76,12 @@ describe('filters', () => {
     });
 
     test('[r][".."] should show move up one level in the path', () => {
-        const proc = setup();
-        proc.press({ ctrl: false, shift: false, name: 'p' });
-        proc.input('body.list.0');
-        proc.press({ ctrl: false, shift: false, name: 'r' });
-        proc.input('..');
-        expect(proc.screen()).toEqual([
+        setup();
+        term.press('p');
+        term.input('body.list.0');
+        term.press('r');
+        term.input('..');
+        expect(term.screen()).toEqual([
             '[                             ',
             '  {                           ',
             '    "item0": "data 00",       ',
@@ -92,12 +92,12 @@ describe('filters', () => {
     });
 
     test('[r]["list.2"] should set the path relative to current path', () => {
-        const proc = setup();
-        proc.press({ ctrl: false, shift: false, name: 'p' });
-        proc.input('body');
-        proc.press({ ctrl: false, shift: false, name: 'r' });
-        proc.input('list.2');
-        expect(proc.screen()).toEqual([
+        setup();
+        term.press('p');
+        term.input('body');
+        term.press('r');
+        term.input('list.2');
+        expect(term.screen()).toEqual([
             '{                             ',
             '  "item0": "data 20",         ',
             '  "item1": "data 21",         ',
@@ -108,12 +108,12 @@ describe('filters', () => {
     });
 
     test('[m]["item1"] should select the value of a property when at an array', () => {
-        const proc = setup();
-        proc.press({ ctrl: false, shift: false, name: 'p' });
-        proc.input('body.list');
-        proc.press({ ctrl: false, shift: false, name: 'm' });
-        proc.input('item1');
-        expect(proc.screen()).toEqual([
+        setup();
+        term.press('p');
+        term.input('body.list');
+        term.press('m');
+        term.input('item1');
+        expect(term.screen()).toEqual([
             '[                             ',
             '  "data 01",                  ',
             '  "data 11",                  ',
@@ -124,10 +124,10 @@ describe('filters', () => {
     });
 
     test('[o]["body,headers"] should omit the selected keys', () => {
-        const proc = setup();
-        proc.press({ ctrl: false, shift: false, name: 'o' });
-        proc.input('body,headers');
-        expect(proc.screen()).toEqual([
+        setup();
+        term.press('o');
+        term.input('body,headers');
+        expect(term.screen()).toEqual([
             '{                             ',
             '  "statusCode": 200           ',
             '}                             ',
@@ -138,10 +138,10 @@ describe('filters', () => {
     });
 
     test('[x]["statusCode,headers"] should show only the selected keys', () => {
-        const proc = setup();
-        proc.press({ ctrl: false, shift: false, name: 'x' });
-        proc.input('statusCode,headers');
-        expect(proc.screen()).toEqual([
+        setup();
+        term.press('x');
+        term.input('statusCode,headers');
+        expect(term.screen()).toEqual([
             '{                             ',
             '  "statusCode": 200,          ',
             '  "headers": {                ',
@@ -152,20 +152,20 @@ describe('filters', () => {
     });
 
     test('[c] should clear all filters and show initial data (again)', () => {
-        const proc = setup();
+        setup();
         // set up filters
-        proc.press({ ctrl: false, shift: true , name: 'k' });
-        proc.press({ ctrl: false, shift: false, name: 'p' });
-        proc.input('body.list');
-        proc.press({ ctrl: false, shift: false, name: 'm' });
-        proc.input('item1');
-        proc.press({ ctrl: false, shift: false, name: 'o' });
-        proc.input('body');
-        proc.press({ ctrl: false, shift: false, name: 'x' });
-        proc.input('statusCode');
+        term.press('K');
+        term.press('p');
+        term.input('body.list');
+        term.press('m');
+        term.input('item1');
+        term.press('o');
+        term.input('body');
+        term.press('x');
+        term.input('statusCode');
         // clear
-        proc.press({ ctrl: false, shift: false, name: 'c' });
-        expect(proc.screen()).toEqual([
+        term.press('c');
+        expect(term.screen()).toEqual([
             '{                             ',
             '  "statusCode": 200,          ',
             '  "body": {                   ',

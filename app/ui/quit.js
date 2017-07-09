@@ -1,7 +1,6 @@
-const readline = require('readline');
+const term = require('terminal-kit').terminal;
 
-module.exports = proc => {
-    readline.cursorTo(proc.stdout, 0, 0);
-    readline.clearScreenDown(proc.stdout);
-    proc.exit(0);
+module.exports = () => {
+    term.clear();
+    process.exit(0);
 };

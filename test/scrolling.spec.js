@@ -1,8 +1,9 @@
 const exploreCli = require('../app/ui/setup');
-const Process = require('./Process');
+const term = require('terminal-kit').terminal;
 
 const setup = (offset = 0) => {
-    const proc = new Process({ rows: 6 });
+    term.reinit();
+    term.height = 6;
     exploreCli({ 
         offset,
         data: [
@@ -16,14 +17,13 @@ const setup = (offset = 0) => {
             'line 8',
             'line 9',
         ]
-    }, proc);
-    return proc;
+    });
 };
 
 describe('scrolling', () => {
     test('should display initial state (no scrolling)', () => {
-        const proc = setup();
-        expect(proc.screen()).toEqual([
+        setup();
+        expect(term.screen()).toEqual([
             '[                             ',
             '  "line 1",                   ',
             '  "line 2",                   ',
@@ -33,10 +33,10 @@ describe('scrolling', () => {
         ]);
     });
 
-    test('[i] should scroll down one line', () => {
-        const proc = setup();
-        proc.press({ ctrl: false, shift: false, name: 'j' });
-        expect(proc.screen()).toEqual([
+    test('[j] should scroll down one line', () => {
+        setup();
+        term.press('j');
+        expect(term.screen()).toEqual([
             '  "line 1",                   ',
             '  "line 2",                   ',
             '  "line 3",                   ',
@@ -47,9 +47,9 @@ describe('scrolling', () => {
     });
 
     test('[ctrl-d] should scroll down half a screen', () => {
-        const proc = setup();
-        proc.press({ ctrl: true, shift: false, name: 'd' });
-        expect(proc.screen()).toEqual([
+        setup();
+        term.press('CTRL_D');
+        expect(term.screen()).toEqual([
             '  "line 3",                   ',
             '  "line 4",                   ',
             '  "line 5",                   ',
@@ -60,9 +60,9 @@ describe('scrolling', () => {
     });
 
     test('[k] should scroll up one line', () => {
-        const proc = setup(3);
-        proc.press({ ctrl: false, shift: false, name: 'k' });
-        expect(proc.screen()).toEqual([
+        setup(3);
+        term.press('k');
+        expect(term.screen()).toEqual([
             '  "line 2",                   ',
             '  "line 3",                   ',
             '  "line 4",                   ',
@@ -73,9 +73,9 @@ describe('scrolling', () => {
     });
 
     test('[ctrl-u] should scroll up half a screen', () => {
-        const proc = setup(3);
-        proc.press({ ctrl: true, shift: false, name: 'u' });
-        expect(proc.screen()).toEqual([
+        setup(3);
+        term.press('CTRL_U');
+        expect(term.screen()).toEqual([
             '[                             ',
             '  "line 1",                   ',
             '  "line 2",                   ',
@@ -86,9 +86,9 @@ describe('scrolling', () => {
     });
 
     test('should not be possible to scroll before the first line', () => {
-        const proc = setup();
-        proc.press({ ctrl: true, shift: false, name: 'u' });
-        expect(proc.screen()).toEqual([
+        setup();
+        term.press('CTRL_U');
+        expect(term.screen()).toEqual([
             '[                             ',
             '  "line 1",                   ',
             '  "line 2",                   ',
@@ -99,9 +99,9 @@ describe('scrolling', () => {
     });
 
     test('should not be possible to scroll past the last line', () => {
-        const proc = setup(10);
-        proc.press({ ctrl: true, shift: false, name: 'd' });
-        expect(proc.screen()).toEqual([
+        setup(10);
+        term.press('CTRL_D');
+        expect(term.screen()).toEqual([
             ']                             ',
             '                              ',
             '                              ',

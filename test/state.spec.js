@@ -1,19 +1,19 @@
 const explorerCli = require('../app/ui/setup');
-const Process = require('./Process');
+const term = require('terminal-kit').terminal;
 
 const setup = () => {
-    const proc = new Process({ rows: 15 });
+    term.reinit();
+    term.height = 15;
     explorerCli({
         data: 'initial data'
-    }, proc);
-    return proc;
+    });
 };
 
 describe('state', () => {
     test('[s] should show the state', () => {
-        const proc = setup();
-        proc.press({ ctrl: false, shift: false, name: 's' });
-        expect(proc.screen()).toEqual([
+        setup();
+        term.press('s');
+        expect(term.screen()).toEqual([
             '{                             ',
             '  "path": "",                 ',
             '  "map": "",                  ',
@@ -33,10 +33,10 @@ describe('state', () => {
     });
 
     test('[s][s] should show the initial data (again)', () => {
-        const proc = setup();
-        proc.press({ ctrl: false, shift: false, name: 's' });
-        proc.press({ ctrl: false, shift: false, name: 's' });
-        expect(proc.screen()).toEqual([
+        setup();
+        term.press('s');
+        term.press('s');
+        expect(term.screen()).toEqual([
             '"initial data"                ',
             '                              ',
             '                              ',

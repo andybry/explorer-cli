@@ -1,7 +1,7 @@
 const output = require('./output');
-const readline = require('readline');
+const term = require('terminal-kit').terminal;
 
-module.exports = (proc, store) => () => {
-    readline.cursorTo(proc.stdout, 0, 0);
-    output(proc, store.getState());
+module.exports = store => () => {
+    term.moveTo(1, 1);
+    output(store.getState());
 };

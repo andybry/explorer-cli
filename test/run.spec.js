@@ -1,19 +1,19 @@
 const explorerCli = require('../app/ui/setup');
-const Process = require('./Process');
+const term = require('terminal-kit').terminal;
 
 const setup = runType => {
-    const proc = new Process({ rows: 3 });
+    term.reinit();
+    term.height = 3;
     explorerCli({
         data: { runType }
-    }, proc);
-    return proc;
+    });
 };
 
 describe('run', () => {
     test('[shift-R] should do nothing for unknown runTypes', () => {
-        const proc = setup('unknown');
-        proc.press({ ctrl: false, shift: true, name: 'r'});
-        expect(proc.screen()).toEqual([
+        setup('unknown');
+        term.press('R');
+        expect(term.screen()).toEqual([
             '{                             ',
             '  "runType": "unknown"        ',
             '}                             ',
@@ -21,9 +21,9 @@ describe('run', () => {
     });
 
     test('[shift-R] should show the data when handler succeeds', () => {
-        const proc = setup('succeeds');
-        proc.press({ ctrl: false, shift: true, name: 'r'});
-        expect(proc.screen()).toEqual([
+        setup('succeeds');
+        term.press('R');
+        expect(term.screen()).toEqual([
             '"success data"                ',
             '                              ',
             '                              ',
@@ -31,9 +31,9 @@ describe('run', () => {
     });
 
     test('[shift-R] should show the error when handler errors', () => {
-        const proc = setup('errors');
-        proc.press({ ctrl: false, shift: true, name: 'r'});
-        expect(proc.screen()).toEqual([
+        setup('errors');
+        term.press('R');
+        expect(term.screen()).toEqual([
             '"error data"                  ',
             '                              ',
             '                              ',

@@ -1,20 +1,20 @@
 const explorerCli = require('../app/ui/setup');
-const Process = require('./Process');
+const term = require('terminal-kit').terminal;
 
 const setup = () => {
-    const proc = new Process({ rows: 10 });
+    term.reinit();
+    term.height = 10;
     explorerCli({
         data: 'current data'
-    }, proc);
-    return proc;
+    });
 };
 
 describe('save', () => {
     test('[shift-S]["file.json"] should save the current state to "file.json"', () => {
         const fs = require('fs');
-        const proc = setup();
-        proc.press({ ctrl: false, shift: true, name: 's' });
-        proc.input('file.json');
+        setup();
+        term.press('S');
+        term.input('file.json');
         expect(fs.createWriteStream).toBeCalledWith('file.json');
         const json = JSON.parse(fs.write.mock.calls[0][0]);
         expect(json.data).toEqual("current data");

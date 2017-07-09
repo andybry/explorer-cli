@@ -3,9 +3,9 @@ const actions = require('../actions');
 const { text } = require('../ui/input');
 
 
-module.exports = proc => store => next => action => {
+module.exports = store => next => action => {
     const handleInputAction = (msg, action, store) => {
-        text(proc, msg, input => store.dispatch(action(input)));
+        text(msg, input => store.dispatch(action(input)));
     };
     switch (action.type) {
         case actionTypes.INPUT_PATH:
