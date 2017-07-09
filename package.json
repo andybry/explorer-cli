@@ -1,6 +1,6 @@
 {
   "name": "explorer-cli",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "Command line utility for exploring data from a variety of sources.",
   "license": "MIT",
   "author": "Andrew Bryant <arbryant101@gmail.com> (https://github.com/andybry)",
