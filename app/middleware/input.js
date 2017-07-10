@@ -2,7 +2,7 @@ const actionTypes = require('../actions/actionTypes');
 const actions = require('../actions');
 const { text } = require('../ui/input');
 const { keys, get } = require('lodash/fp');
-
+const paths = require('../paths');
 
 module.exports = store => next => action => {
     const handleInputAction = (options, action) => {
@@ -12,7 +12,9 @@ module.exports = store => next => action => {
         case actionTypes.INPUT_PATH:
             return handleInputAction({
                 msg: 'path: ',
-                default: store.getState().path || ''
+                default: store.getState().path || '',
+                autoComplete: paths(store.getState().data),
+                autoCompleteMenu: true
             }, actions.setPath);
         case actionTypes.INPUT_RELATIVE_PATH:
             return handleInputAction({
