@@ -50,12 +50,12 @@ describe('paths', () => {
             ]
         })).toEqual([
             'one',
+            'five',
             'one.two',
             'one.two.three',
-            'five',
             'five.0',
-            'five.0.six',
             'five.1',
+            'five.0.six',
             'five.1.seven'
         ]);
     });
@@ -75,13 +75,13 @@ describe('paths', () => {
             }
         ])).toEqual([
             '0',
+            '1',
             '0.one',
             '0.one.two',
-            '1',
             '1.four',
             '1.four.0',
-            '1.four.0.five',
             '1.four.1',
+            '1.four.0.five',
             '1.four.1.six',
         ]);
     });
