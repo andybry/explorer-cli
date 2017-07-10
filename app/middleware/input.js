@@ -50,7 +50,9 @@ module.exports = store => next => action => {
         }
         case actionTypes.INPUT_ADD_CACHE:
             return handleInputAction({
-                msg: 'add to cache: '
+                msg: 'add to cache: ',
+                autoComplete: keys(store.getState().cache),
+                autoCompleteMenu: true
             }, actions.addCache);
         case actionTypes.INPUT_LOAD_CACHE:
             return handleInputAction({
