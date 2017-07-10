@@ -58,7 +58,9 @@ module.exports = store => next => action => {
             }, actions.loadCache);
         case actionTypes.INPUT_DELETE_CACHE:
             return handleInputAction({
-                msg: 'delete from cache: '
+                msg: 'delete from cache: ',
+                autoComplete: keys(store.getState().cache),
+                autoCompleteMenu: true
             }, actions.deleteCache);
         default:
             return next(action);
