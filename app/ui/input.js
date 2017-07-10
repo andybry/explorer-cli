@@ -37,11 +37,11 @@ const keys = store => cond([
     ['Z',      actions.toggleAutosave],
 ].map(keyInput(store)));
 
-const text = (msg, cb) => {
+const text = (options, cb) => {
     term.clear();
-    term(msg);
+    term(options.msg);
     isProcessing = true;
-    term.inputField((err, input) => {
+    term.inputField(options, (err, input) => {
         isProcessing = false;
         cb(input);
     });

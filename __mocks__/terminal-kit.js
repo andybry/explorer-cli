@@ -27,7 +27,7 @@ merge(terminal, new EventEmitter, {
         )(this.mock.calls);
     },
     input: function(str) {
-        const cb = last(this.inputField.mock.calls)[0];
+        const cb = last(this.inputField.mock.calls)[1];
         cb(null, str);
     } 
 });
