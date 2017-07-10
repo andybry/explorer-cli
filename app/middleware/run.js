@@ -14,7 +14,7 @@ module.exports = store => next => action => {
             }
             handler(data, (err, res) => {
                 const newData = err ? err : res;
-                const serializableData = JSON.parse(JSON.stringify(res));
+                const serializableData = JSON.parse(JSON.stringify(newData));
                 store.dispatch(actions.setData(serializableData));
             });
             return next(action);
