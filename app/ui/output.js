@@ -38,7 +38,7 @@ module.exports = state => flow(
             /^(\s*)"(.*?)("?)(,?)(\s+)?$/,
             cDelim('$1"') + cStr('$2') + cDelim('$3$4$5')
         ),
-        // term
-        x => process.stdout.write(x)
+        replace(/%/g, '%%'),
+        term
     ))
 )(state);
