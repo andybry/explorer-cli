@@ -9,9 +9,9 @@ module.exports = (state = data, action) => {
             try {
                 val = JSON.parse(action.val);
             } catch (e) {
-                val = action.val
+                val = action.val;
             }
-            return set(action.path, val, state);
+            return (action.path === '' ? val : set(action.path, val, state));
         }
         case actionTypes.DELETE_PATH:
             return omit(action.path, state);

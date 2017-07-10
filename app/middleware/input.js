@@ -40,9 +40,10 @@ module.exports = store => next => action => {
             }, actions.save);
         case actionTypes.INPUT_PATH_VALUE: {
             const { path, data } = store.getState();
+            const current = path === '' ? data : get(path, data);
             return handleInputAction({
                 msg: `path ('${path}') value: `,
-                default: JSON.stringify(get(path, data))
+                default: JSON.stringify(current)
             }, actions.setPathValue);
         }
         case actionTypes.INPUT_ADD_CACHE:
