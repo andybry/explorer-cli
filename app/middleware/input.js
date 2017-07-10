@@ -1,7 +1,7 @@
 const actionTypes = require('../actions/actionTypes');
 const actions = require('../actions');
 const { text } = require('../ui/input');
-const { keys } = require('lodash/fp');
+const { keys, get } = require('lodash/fp');
 
 
 module.exports = store => next => action => {
@@ -38,11 +38,13 @@ module.exports = store => next => action => {
                 msg: 'save file: ',
                 default: store.getState().filename || ''
             }, actions.save);
-        case actionTypes.INPUT_PATH_VALUE:
-            const { path } = store.getState();
+        case actionTypes.INPUT_PATH_VALUE: {
+            const { path, data } = store.getState();
             return handleInputAction({
-                msg: `path ('${path}') value: `
+                msg: `path ('${path}') value: `,
+                default: JSON.stringify(get(path, data))
             }, actions.setPathValue);
+        }
         case actionTypes.INPUT_ADD_CACHE:
             return handleInputAction({
                 msg: 'add to cache: '
